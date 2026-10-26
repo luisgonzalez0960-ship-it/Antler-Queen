@@ -1,0 +1,34 @@
+JUGAR ONLINE ENTRE REDES DISTINTAS (HASTA 4 JUGADORES)
+
+El juego trae tres formas. Elige la que te acomode.
+
+1) VPN (la mas facil: 5 minutos, sin servidor, sin abrir puertos)
+   - Todos instalan Tailscale (o ZeroTier) y entran a la misma red virtual.
+   - El anfitrion elige ONLINE > CREAR PARTIDA (RED LOCAL / IP) y comparte su IP de Tailscale (empieza con 100.).
+   - Los demas eligen ONLINE > UNIRSE POR IP y escriben esa IP.
+
+2) Abrir el puerto en el router
+   - En tu router, redirige el puerto TCP 5555 hacia la IP local de tu PC (la que el juego muestra como IP de red local).
+   - En la sala de espera el juego muestra tu IP publica. Pasasela a los demas: ellos usan UNIRSE POR IP.
+   - Permite el juego (Python) en el firewall de Windows la primera vez.
+   - No funciona si tu proveedor usa CGNAT (la IP que ve internet no es realmente la de tu router). Si no puedes abrir puertos, usa la opcion 1 o la 3.
+
+3) Servidor relay (sin abrir puertos en tu casa, con codigos de sala)
+   - Necesitas un equipo con IP publica y el puerto TCP 5556 abierto: un VPS (Oracle Cloud gratis, DigitalOcean, Hetzner, etc.) o una PC con el puerto abierto.
+   - En ese equipo ejecuta:   python3 relay_server.py
+     (usa el puerto 5556; para otro puerto:  python3 relay_server.py 6000)
+   - Abre el puerto en el firewall del servidor (ejemplo en Ubuntu: sudo ufw allow 5556/tcp) y tambien en el panel del proveedor si tiene uno.
+   - Para dejarlo corriendo en Linux usa tmux o un servicio systemd.
+   - En el juego: ONLINE > CREAR SALA EN INTERNET.
+     La primera vez pide la direccion del relay, por ejemplo  miservidor.com:5556  o  203.0.113.10:5556
+     y la guarda en config_online.json (junto a main.py).
+   - Aparece un codigo de 5 letras. Los demas eligen ONLINE > UNIRSE CON CODIGO y lo escriben.
+   - En la pantalla del codigo, F2 cambia la direccion del servidor.
+   - Sirven los servicios que dan TCP directo. Los que solo dan HTTP (Render, Heroku, Vercel) no sirven.
+   - El relay solo pasa bytes entre jugadores, no guarda nada. No tiene contrasena: es para jugar entre amigos.
+   - Para probarlo en tu propia PC: ejecuta relay_server.py y en el juego usa 127.0.0.1:5556
+
+Notas
+   - Si alguien se desconecta en plena partida, la partida se cierra para todos.
+   - Con el relay hay un salto extra, asi que el retraso depende de donde este el servidor: elige uno cercano.
+   - Los controles se cambian en el menu principal, opcion CONTROLES (se guardan en controles.json).

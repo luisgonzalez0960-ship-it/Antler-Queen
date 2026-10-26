@@ -1,0 +1,73 @@
+{
+  "J1": {
+    "izq": [
+      "a"
+    ],
+    "der": [
+      "d"
+    ],
+    "salto": [
+      "w",
+      "space"
+    ],
+    "correr": [
+      "left shift"
+    ],
+    "defensa": [
+      "c"
+    ],
+    "ataque": [
+      "f"
+    ],
+    "fuerte": [
+      "g"
+    ],
+    "patada": [
+      "v"
+    ],
+    "patada_fuerte": [
+      "b"
+    ],
+    "especial": [
+      "r"
+    ],
+    "transformar": [
+      "t"
+    ]
+  },
+  "J2": {
+    "izq": [
+      "left"
+    ],
+    "der": [
+      "right"
+    ],
+    "salto": [
+      "up"
+    ],
+    "correr": [
+      "right shift"
+    ],
+    "defensa": [
+      "down"
+    ],
+    "ataque": [
+      "j"
+    ],
+    "fuerte": [
+      "k"
+    ],
+    "patada": [
+      "n"
+    ],
+    "patada_fuerte": [
+      "m"
+    ],
+    "especial": [
+      "u"
+    ],
+    "transformar": [
+      "i"
+    ]
+  }
+}
